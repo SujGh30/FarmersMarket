@@ -10,39 +10,10 @@ namespace FarmersMarket
     {
         static void Main(string[] args)
         {
-            //Instantiate an object
-            var vegetable = new Vegetables();
-
-            vegetable.Name = "Beans";
-            vegetable.Price = 2;
-            vegetable.Quantity = 1;
-
-            Console.WriteLine($"VN: {vegetable.Name}, price:{ vegetable.Price:C}, pounds:{vegetable.Quantity}" );
-
-            var vegetable2 = new Vegetables();
-            Console.WriteLine($"VN: {vegetable2.Name}, price:{ vegetable2.Price:C}, pounds:{vegetable2.Quantity}");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            var order = Order.OrderVegetables("test1@test.com", 1234, 2, 10, TypeOfPayment.CreditCard, "Beans",3);
+            Console.WriteLine($"Order ID: {Order.OrderID}");
+            var order2 = Order.OrderVegetables("test2@test.com", 12345, 3, 5, TypeOfPayment.Cash, "Carrot", 3);
+            Console.WriteLine($"Order ID: {Order.OrderID}");
         }
     }
 }

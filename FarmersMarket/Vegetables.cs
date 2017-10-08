@@ -6,25 +6,34 @@ using System.Threading.Tasks;
 
 namespace FarmersMarket
 {
-    class Vegetables
+    public enum TypeOfPayment
+    {
+        CreditCard,
+        DebitCard,
+        Cash
+    }
+
+      public class Vegetables
 
     {
-        private static float Totalcost = 0;
-        private static int Itemscount = 0;
+        private static decimal Totalcost = 0;
+        private static int Itemscount =  0;
        
         // Properties 
 
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public float Quantity { get; set; }    
-
+        public float Quantity { get; set; } 
+        public TypeOfPayment Payment { get; set; }
+        public string EmailAddress { get; set; }
         //Constructor  
 
         public Vegetables()
         {
             
             Itemscount += Vegetables.Itemscount;
-            
+            Totalcost += Vegetables.Totalcost;
+
         }
             
 
