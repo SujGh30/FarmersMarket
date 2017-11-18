@@ -15,7 +15,7 @@ namespace FarmersMarket
 
     public static class Order
     {
-        private static List<Vegetables> Vegelist = new List<Vegetables>();
+        private static FarmerMarketModel db = new FarmerMarketModel();
 
         
         /// <summary>
@@ -48,15 +48,17 @@ namespace FarmersMarket
             ItemCost = vegetables.Quantity * vegetables.Price;
             TotalCost = TotalCost + ItemCost;
             //Creating Vegetables list           
-            Vegelist.Add(vegetables); 
+            db.Vegetables.Add(vegetables);
+            
+            db.SaveChanges();
             return vegetables;
 
         }
         //Method to print the order details
-        public static List<Vegetables> GetOrderdetails ()
+        public static List<Vegetables> GetOrderdetails()
         {
             Console.WriteLine($"Order ID: {OrderID}, No of items: {ItemsCount}, Total Cost:{TotalCost:C}");
-            return Vegelist;
+            return db.Vegetables.ToList();
 
         }
 
