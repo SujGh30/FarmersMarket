@@ -51,7 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs" />
     <Compile Include="FarmerMarketModel.cs" />
+    <Compile Include="Migrations\201711181842215_InitialCreate.cs" />
+    <Compile Include="Migrations\201711181842215_InitialCreate.Designer.cs">
+      <DependentUpon>201711181842215_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712012021232_Customer.cs" />
+    <Compile Include="Migrations\201712012021232_Customer.Designer.cs">
+      <DependentUpon>201712012021232_Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +70,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711181842215_InitialCreate.resx">
+      <DependentUpon>201711181842215_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712012021232_Customer.resx">
+      <DependentUpon>201712012021232_Customer.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,45 +23,94 @@ namespace FarmersMarket
         /// </summary>
 
 
-        private static int OrderID = 1;
-        private static int ItemsCount = 0;
-        private static decimal ItemCost = 0;
-        private static decimal TotalCost = 0;
         public static TypeOfPayment Payment { get; set; }
         public static string EmailAddress { get; set; }
+        public static DateTime OrderDate { get; private set; }
+        public static OrderType TypeOfOrder { get; private set; }
 
-        public static Vegetables OrderVegetables(string emailaddress, decimal vegprice, TypeOfPayment typeofpayment, string vname, decimal quantity)
+        public static Vegetables AddVegetables(decimal vegprice, string vname)
         {
-
-            EmailAddress = emailaddress;
-            //OrderID      = OrderID + 1;
-            ItemsCount   = ItemsCount + 1;
             var vegetables = new Vegetables();
             vegetables.Price = vegprice;
             vegetables.Name = vname;
-            Payment = typeofpayment;
-            if (quantity > 0)
-            {
-                vegetables.Quantity = quantity;
-
-            }
-            ItemCost = vegetables.Quantity * vegetables.Price;
-            TotalCost = TotalCost + ItemCost;
-            //Creating Vegetables list           
+           //Creating Vegetables list           
             db.Vegetables.Add(vegetables);
             
             db.SaveChanges();
             return vegetables;
+        }
 
+        //Method to print the Vegetable prices
+        public static List<Vegetables> GetVegetablePricesList()
+        {
+            return db.Vegetables.ToList();
+        }
+
+        //Method to print the Vegetable prices by VegID
+        public static Vegetables GetVegetablePricesByID(int vegID)
+        {
+            var vegs = db.Vegetables.Where(a => a.VegetableID == vegID).FirstOrDefault();
+            if (vegs == null)
+                throw new ArgumentOutOfRangeException("Invalid Vegetable Name.");
+            return vegs;
+        }
+
+        public  static void OrderVegetables(int VegID, TypeOfPayment payment, decimal vegQty, string emailID, string address)
+        {
+
+            var vegbyID = GetVegetablePricesByID(VegID);
+                
+            var customerOrder  = new Customer
+            {
+                OrderDate = DateTime.UtcNow,
+                TypeOfOrder = OrderType.Created,
+                Quantity = vegQty,
+                EmailAddress = emailID,
+                AddressToDeliver = address,
+                TotalAmount = vegbyID.Price * vegQty,
+                VegetableID = vegbyID.VegetableID
+            };
+
+            db.Customers.Add(customerOrder);
+            db.SaveChanges();
+         }
+
+           //Select all orders by email ID and deliver them. 
+        public static void DeliverCustomerOrder(string emailID)
+        {
+            db.Customers.Where(c => c.EmailAddress == emailID).ToList().ForEach(c =>
+            {
+                c.OrderDate = DateTime.UtcNow;
+                if (c.TypeOfOrder == OrderType.Created)
+                    c.TypeOfOrder = OrderType.Delivered;
+            });
+            db.SaveChanges();
+        }
+
+        //Cancel order by eamild ID only if it is still not delivered. 
+        public static void CancelCustomerOrder(string emailID)
+        {
+            db.Customers.Where(c => c.EmailAddress == emailID).ToList().ForEach(c =>
+            {
+                c.OrderDate = DateTime.UtcNow;
+                if (c.TypeOfOrder == OrderType.Created)
+                    c.TypeOfOrder = OrderType.OrderCancelled;
+            });
+            db.SaveChanges();
         }
         //Method to print the order details
-        public static List<Vegetables> GetOrderdetails()
+        public static List<Customer> GetOrderdetails()
         {
-            Console.WriteLine($"Order ID: {OrderID}, No of items: {ItemsCount}, Total Cost:{TotalCost:C}");
-            return db.Vegetables.ToList();
+            return db.Customers.ToList();
+
 
         }
+        //Method to print the order details by customer Email
+        public static List<Customer> GetOrderdetailsbyEmailID(string emailID)
+        {
+            return db.Customers.Where(c => c.EmailAddress == emailID).ToList();
 
+        }
     }
-
+   
 }

@@ -11,8 +11,11 @@ C:\sujatha\Github\FarmersMarket\FarmersMarket\bin\Debug\FarmersMarket.pdb
 C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.csproj.CoreCompileInputs.cache
 C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.exe
 C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.pdb
-C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.csprojResolveAssemblyReference.cache
 C:\sujatha\Github\FarmersMarket\FarmersMarket\bin\Debug\EntityFramework.dll
 C:\sujatha\Github\FarmersMarket\FarmersMarket\bin\Debug\EntityFramework.SqlServer.dll
 C:\sujatha\Github\FarmersMarket\FarmersMarket\bin\Debug\EntityFramework.xml
 C:\sujatha\Github\FarmersMarket\FarmersMarket\bin\Debug\EntityFramework.SqlServer.xml
+C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.Migrations.InitialCreate.resources
+C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.csproj.GenerateResource.Cache
+C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.Migrations.Customer.resources
+C:\sujatha\Github\FarmersMarket\FarmersMarket\obj\Debug\FarmersMarket.csprojResolveAssemblyReference.cache

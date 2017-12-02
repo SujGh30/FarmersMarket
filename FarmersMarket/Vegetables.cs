@@ -20,12 +20,14 @@ namespace FarmersMarket
         public string Name { get; set; }
         [Required]
         public decimal Price { get; set; }
-        [Required]
-        public decimal Quantity { get; set; }
         
-  
-   //     public TypeOfPayment Payment { get; set; }
-    //    public string EmailAddress { get; set; }
+
+        public virtual ICollection<Customer> Customers { get; set; }
+
+
+
+        //     public TypeOfPayment Payment { get; set; }
+        //    public string EmailAddress { get; set; }
         //Constructor  
 
         public Vegetables()
